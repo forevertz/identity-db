@@ -2,7 +2,7 @@ const neo4j = require('neo4j-driver').v1
 
 const onExit = require('./onExit')
 
-const uri = process.env.NEO4J_URL || 'bolt://127.0.0.1'
+const uri = process.env.NEO4J_URL || 'bolt://127.0.0.1:7688'
 const [user, password] = (process.env.NEO4J_AUTH || 'neo4j/CHANGEME').split('/')
 
 const options = { disableLosslessIntegers: true }
@@ -30,7 +30,10 @@ async function addUniqueConstraint(label, property) {
 function returnData(records) {
   return records.map(({ _fields, _fieldLookup }) =>
     Object.keys(_fieldLookup).reduce(
-      (acc, field, i) => ({ ...acc, [field]: i > 0 ? _fields[i] : _fields[i].properties }),
+      (acc, field, i) => ({
+        ...acc,
+        [field]: i > 0 || !_fields[i] || !_fields[i].properties ? _fields[i] : _fields[i].properties
+      }),
       {}
     )
   )

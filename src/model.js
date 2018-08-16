@@ -1,7 +1,29 @@
 const { addIndex, addUniqueConstraint } = require('./util/neo4j')
 
 const Model = {
-  // TODO
+  User: {
+    id: { unique: true, indexed: true },
+    created: {},
+    languages: {}
+  },
+  Device: {
+    id: { unique: true, indexed: true },
+    created: {},
+    userAgent: {}
+  },
+  Identity: {
+    id: { unique: true, indexed: true },
+    created: {},
+    pseudo: {},
+    avatar: {},
+    presentation: {},
+    website: {}
+  },
+  Connector: {
+    id: { indexed: true },
+    provider: {},
+    created: {}
+  }
 }
 
 async function initModel() {

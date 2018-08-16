@@ -17,9 +17,18 @@ const endpoints = {
     '/time': {
       description: 'Get server time (ISO 8601)',
       call: require('./endpoint/get-time')
+    },
+    '/user': {
+      description: 'Get a User with his/her Identities',
+      call: require('./endpoint/get-user')
     }
   },
-  POST: {}
+  POST: {
+    '/login': {
+      description: 'Post login information and get or create associated User and Identities',
+      call: require('./endpoint/post-login')
+    }
+  }
 }
 
 async function checkRequest(request, response, endpoints) {
