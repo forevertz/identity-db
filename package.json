@@ -5,5 +5,21 @@
   "main": "src/index.js",
   "repository": "https://github.com/forevertz/identity-db",
   "author": "Improvertz",
-  "license": "GPL-3.0"
+  "license": "GPL-3.0",
+  "scripts": {
+    "dev": "docker-compose -f docker-compose.dev.yml up -d && micro-dev",
+    "start": "NODE_ENV=${NODE_ENV-production} NEO4J_URL=$NEO4J_URL NEO4J_AUTH=$NEO4J_AUTH micro",
+    "docker:build": "docker build -f Dockerfile-single-image -t forevertz/identity-db .",
+    "docker:publish": "yarn run docker:build && docker tag forevertz/identity-db forevertz/identity-db:${TAG} && docker push forevertz/identity-db:${TAG}"
+  },
+  "dependencies": {
+    "micro": "^9.3.3",
+    "neo4j-driver": "^1.6.3"
+  },
+  "devDependencies": {
+    "eslint-config-standard": "^11.0.0",
+    "micro-dev": "^3.0.0",
+    "prettier": "^1.14.2",
+    "standard": "^11.0.1"
+  }
 }
