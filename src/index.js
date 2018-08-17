@@ -18,15 +18,15 @@ const endpoints = {
       description: 'Get server time (ISO 8601)',
       call: require('./endpoint/get-time')
     },
-    '/user': {
-      description: 'Get a User with his/her Identities',
-      call: require('./endpoint/get-user')
+    '/identities': {
+      description: 'Get all Identities linked to a Connector',
+      call: require('./endpoint/get-identities')
     }
   },
   POST: {
-    '/login': {
-      description: 'Post login information and get or create associated User and Identities',
-      call: require('./endpoint/post-login')
+    '/connector': {
+      description: 'Add Connector information and get associated Identities',
+      call: require('./endpoint/post-connector')
     },
     '/identity': {
       description: 'Add or update an Identity',

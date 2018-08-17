@@ -1,7 +1,7 @@
 {
   "name": "identity-db",
   "version": "0.0.1",
-  "description": "A graph database service to store user identities",
+  "description": "A graph database service to store user identities and connectors",
   "main": "src/index.js",
   "repository": "https://github.com/forevertz/identity-db",
   "author": "Improvertz",
