@@ -27,6 +27,10 @@ const endpoints = {
     '/login': {
       description: 'Post login information and get or create associated User and Identities',
       call: require('./endpoint/post-login')
+    },
+    '/identity': {
+      description: 'Add or update an Identity',
+      call: require('./endpoint/post-identity')
     }
   }
 }

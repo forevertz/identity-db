@@ -49,7 +49,7 @@ module.exports = async req => {
       // Create user with default identity
       userId = generateId()
       const user = { id: userId, created: params.now, languages: languages.join(',') }
-      const identity = { id: generateId(), created: params.now, pseudo, avatar }
+      const identity = { id: generateId(), created: params.now, label: 'Public', pseudo, avatar }
       const commands = [
         'MATCH (connector:Connector { provider: $provider, id: $providerUserId })',
         'CREATE (user:User $user)-[:LOGGED_AS { created: $now }]->(connector)',
