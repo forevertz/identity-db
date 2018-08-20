@@ -2,7 +2,7 @@ const { json } = require('micro')
 
 const { validateIdentity, validateConnector } = require('../model')
 const { generateId } = require('../util')
-const { db } = require('../util/neo4j')
+const { db, returnData } = require('../util/neo4j')
 
 module.exports = async req => {
   try {
@@ -16,10 +16,11 @@ module.exports = async req => {
       'MERGE (identity:Identity { id: $identity.id })',
       'ON CREATE SET identity.created = timestamp()',
       'SET identity += $identity',
-      'MERGE (identity)<-[:VOUCHES_FOR]-(connector)'
+      'MERGE (identity)<-[:VOUCHES_FOR]-(connector)',
+      'RETURN identity'
     ]
-    await db.run(commands.join(' '), { connector, identity })
-    return { success: true }
+    const { records } = await db.run(commands.join(' '), { connector, identity })
+    return { success: true, result: returnData(records)[0] }
   } catch (error) {
     return { success: false, error: `[${error.code}] ${error.message}` }
   }
