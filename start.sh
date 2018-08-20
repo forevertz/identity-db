@@ -6,4 +6,4 @@ sleep 5
 
 # Run application
 cd /usr/src/app
-yarn start
+NEO4J_URL=bolt://127.0.0.1:7687 yarn start
