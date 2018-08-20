@@ -13,7 +13,12 @@ module.exports = async req => {
       'RETURN identity'
     ]
     const { records } = await db.run(commands.join(' '), { connector })
-    return { success: true, result: returnData(records).map(({ identity }) => identity) }
+    return {
+      success: true,
+      result: returnData(records)
+        .map(({ identity }) => identity)
+        .filter(v => v)
+    }
   } catch (error) {
     return { success: false, error: `[${error.code}] ${error.message}` }
   }
