@@ -18,10 +18,15 @@ function capitalize(string) {
 }
 
 function generateId(string) {
-  return crypto
-    .randomBytes(26)
-    .toString('base64')
-    .replace('=', '')
+  return (
+    crypto
+      .randomBytes(32)
+      .toString('base64')
+      // urlsafe
+      .replace(/\+/g, '-')
+      .replace(/\//g, '_')
+      .replace(/=/g, '')
+  )
 }
 
 module.exports = {
