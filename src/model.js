@@ -84,16 +84,16 @@ function validateIdentity({ id, label, pseudo, avatar, intro, website, languages
   if (label && !isString(label, /^[A-Za-z0-9_+/-]+$/)) {
     throw new FormError('Parameter `identity.label` should be a string')
   }
-  if (pseudo && !isString(pseudo, /^[A-Za-z0-9_+/-]+$/)) {
+  if (pseudo && !isString(pseudo, /^.*$/)) {
     throw new FormError('Parameter `identity.pseudo` should be a string')
   }
-  if (avatar && !isString(avatar, /^[A-Za-z0-9_+/-]+$/)) {
+  if (avatar && !isString(avatar, /^https?:\/\/.*$/)) {
     throw new FormError('Parameter `identity.avatar` should be a string')
   }
   if (intro && !isString(intro, /^.*$/)) {
     throw new FormError('Parameter `identity.intro` should be a string')
   }
-  if (website && !isString(website, /^[A-Za-z0-9_+/-]+$/)) {
+  if (website && !isString(website, /^https?:\/\/.*$/)) {
     throw new FormError('Parameter `identity.website` should be a string')
   }
   if (
