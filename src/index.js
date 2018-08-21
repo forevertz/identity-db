@@ -18,6 +18,10 @@ const endpoints = {
       description: 'Get server time (ISO 8601)',
       call: require('./endpoint/get-time')
     },
+    '/identity': {
+      description: 'Find an Identity',
+      call: require('./endpoint/get-identity')
+    },
     '/identities': {
       description: 'Get all Identities linked to a Connector',
       call: require('./endpoint/get-identities')

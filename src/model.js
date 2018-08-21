@@ -15,6 +15,7 @@ const Model = {
   Identity: {
     id: { unique: true, indexed: true },
     created: {},
+    key: {},
     pseudo: {},
     avatar: {},
     intro: {},
@@ -70,7 +71,7 @@ function validateConnector({ provider, userId, ...rest }) {
   }
 }
 
-function validateIdentity({ id, label, pseudo, avatar, intro, website, languages, ...rest }) {
+function validateIdentity({ id, key, label, pseudo, avatar, intro, website, languages, ...rest }) {
   if (Object.keys(rest).length > 0) {
     throw new FormError(
       `Unauthorized keys: ${Object.keys(rest)
@@ -78,8 +79,11 @@ function validateIdentity({ id, label, pseudo, avatar, intro, website, languages
         .join(', ')}`
     )
   }
-  if (!id || !isString(id, /^[A-Za-z0-9_+/-]+$/)) {
-    throw new FormError('Parameter `identity.id` is required and should be a string')
+  if (id && !isString(id, /^[A-Za-z0-9_+/-]+$/)) {
+    throw new FormError('Parameter `identity.id` should be a string')
+  }
+  if (key && !isString(key, /^[A-Za-z0-9_+/-]+$/)) {
+    throw new FormError('Parameter `identity.key` should be a string')
   }
   if (label && !isString(label, /^[A-Za-z0-9_+/-]+$/)) {
     throw new FormError('Parameter `identity.label` should be a string')
