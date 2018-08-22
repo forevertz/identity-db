@@ -13,7 +13,7 @@ module.exports = async req => {
       'RETURN identity'
     ]
     const { records } = await db.run(commands.join(' '), params)
-    return { success: true, result: returnData(records)[0] }
+    return { success: true, result: returnData(records)[0] || null }
   } catch (error) {
     return { success: false, error: `[${error.code}] ${error.message}` }
   }
