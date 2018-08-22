@@ -13,7 +13,7 @@ services:
       - dataVolume:/var/lib/neo4j/data
       - dataVolume:/var/lib/neo4j/logs
 
-  interact-db:
+  identity-db:
     build: .
     environment:
       - NEO4J_URL=bolt://neo4j
