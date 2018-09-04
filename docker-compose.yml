@@ -7,8 +7,8 @@ services:
       - NEO4J_AUTH=${NEO4J_AUTH-neo4j/CHANGEME}
       - NEO4J_HOME=/var/lib/neo4j
     ports:
-      - 127.0.0.1:7688:7687
-      - 127.0.0.1:3007:7474
+      - 127.0.0.1:7687:7687
+      - 127.0.0.1:7474:7474
     volumes:
       - dataVolume:/var/lib/neo4j/data
       - dataVolume:/var/lib/neo4j/logs
@@ -19,7 +19,7 @@ services:
       - NEO4J_URL=bolt://neo4j
       - NEO4J_AUTH=${NEO4J_AUTH-neo4j/CHANGEME}
     ports:
-      - 127.0.0.1:3006:3000
+      - 127.0.0.1:3000:3000
     links:
       - neo4j
 

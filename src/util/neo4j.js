@@ -2,7 +2,7 @@ const neo4j = require('neo4j-driver').v1
 
 const onExit = require('./onExit')
 
-const uri = process.env.NEO4J_URL || 'bolt://127.0.0.1:7688'
+const uri = process.env.NEO4J_URL || 'bolt://127.0.0.1:7687'
 const [user, password] = (process.env.NEO4J_AUTH || 'neo4j/CHANGEME').split('/')
 
 const options = { disableLosslessIntegers: true }
